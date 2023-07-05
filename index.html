@@ -18,15 +18,11 @@
 </head>
 
 <body>
-    <header>
-        <h1>
-        </h1>
-    </header>
     <main>
         <canvas id="drawingArea"></canvas>
     </main>
     <script type="module">
-        import { getEleById, addListener } from './utils.js';
+        import { getEleById, addListener, compose } from './utils.js';
         const drawingArea = getEleById('drawingArea');
         const drawingAreaContext = drawingArea.getContext('2d');
 
@@ -51,6 +47,21 @@
             drawingAreaContext.clearRect(x, y, width, height);
         }
 
+        function getCenterPointOfCanvas() {
+            const width = drawingArea.width;
+            const centerInXaxis = Math.round(width / 2);
+            const yAxis = 100;
+            return [centerInXaxis, yAxis];
+        }
+
+        function getCanvasMemeText() {
+            return 'Canvas Learning';
+        }
+
+        function toUpperCase(text) {
+            return text.toUpperCase();
+        }
+
         (function init() {
             setDrawingAreaOfCanvas();
 
@@ -72,6 +83,15 @@
             drawingAreaContext.lineTo(110, 250);
 
             drawingAreaContext.fill();
+
+            const [centerX, centerY] = getCenterPointOfCanvas();
+            drawingAreaContext.font = '36pt impact';
+            drawingAreaContext.fillStyle = 'white';
+            drawingAreaContext.textAlign = 'center';
+            const canvasText = compose(toUpperCase, getCanvasMemeText)();
+            drawingAreaContext.fillText(canvasText, centerX, centerY);
+            drawingAreaContext.strokeStyle = 'black';
+            drawingAreaContext.strokeText(canvasText, centerX, centerY);
 
         })();
 
