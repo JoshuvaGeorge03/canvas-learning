@@ -19,10 +19,16 @@
 
 <body>
     <main>
+        <form action="#" method="GET" enctype="multipart/form-data">
+            <div>
+                <label for="memeFile">Select Meme Image</label>
+                <input type="file" name="memeFile" id="memeFile">
+            </div>
+        </form>
         <canvas id="drawingArea"></canvas>
     </main>
     <script type="module">
-        import { getEleById, addListener, compose } from './utils.js';
+        import { getEleById } from './utils.js';
         const drawingArea = getEleById('drawingArea');
         const drawingAreaContext = drawingArea.getContext('2d');
 
@@ -34,6 +40,11 @@
             drawingArea.width = Math.round(.97 * viewportSize.width);
             drawingArea.height = Math.round(.97 * viewportSize.height);
         }
+
+        setDrawingAreaOfCanvas();
+    </script>
+    <script type="module">
+        import { getEleById, addListener, compose } from './utils.js';
 
         function fillRect(x, y, width, height) {
             drawingAreaContext.fillRect(x, y, width, height);
@@ -63,7 +74,7 @@
         }
 
         (function init() {
-            setDrawingAreaOfCanvas();
+            /// learned basic drawing commands
 
             drawingAreaContext.fillStyle = 'purple';
             fillRect(10, 10, 100, 100);
@@ -93,8 +104,11 @@
             drawingAreaContext.strokeStyle = 'black';
             drawingAreaContext.strokeText(canvasText, centerX, centerY);
 
-        })();
+        });
 
+    </script>
+    <script type="module">
+        // going to do a canvas meme generator
     </script>
 </body>
 
