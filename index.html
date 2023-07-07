@@ -19,18 +19,18 @@
 
 <body>
     <main>
-        <form action="#" method="GET" enctype="multipart/form-data">
+        <form id="memeGeneratorForm" action="#" method="GET" enctype="multipart/form-data">
             <div>
                 <label for="memeFile">Select Meme Image</label>
-                <input type="file" name="memeFile" id="memeFile">
+                <input type="file" name="memeFile" id="memeFile" accept="image/*">
             </div>
         </form>
         <canvas id="drawingArea"></canvas>
     </main>
     <script type="module">
         import { getEleById } from './utils.js';
-        const drawingArea = getEleById('drawingArea');
-        const drawingAreaContext = drawingArea.getContext('2d');
+        export const drawingArea = getEleById('drawingArea');
+        export const drawingAreaContext = drawingArea.getContext('2d');
 
         function setDrawingAreaOfCanvas() {
             const viewportSize = {
@@ -104,11 +104,24 @@
             drawingAreaContext.strokeStyle = 'black';
             drawingAreaContext.strokeText(canvasText, centerX, centerY);
 
-        });
+        })();
 
     </script>
+    <!-- <script type="module" src="./index.js"></script> -->
     <script type="module">
-        // going to do a canvas meme generator
+        import { getEleById, addListener } from './utils.js';
+
+const memeGeneratorForm = getEleById('memeGeneratorForm');
+const memeImageInput = getEleById('memeFile');
+
+function drawImage(imageElement) {
+    drawingAreaContext.drawImage(imageElement, 100, 100, drawingArea.width, drawingArea.height);
+}
+
+addListener(memeImageInput, 'change', (e) => {
+    console.log('e', e);
+    drawImage(memeImageInput);
+})
     </script>
 </body>
 
