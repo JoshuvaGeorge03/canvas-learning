@@ -29,8 +29,8 @@
     </main>
     <script type="module">
         import { getEleById } from './utils.js';
-        export const drawingArea = getEleById('drawingArea');
-        export const drawingAreaContext = drawingArea.getContext('2d');
+        globalThis.drawingArea = getEleById('drawingArea');
+        globalThis.drawingAreaContext = drawingArea.getContext('2d');
 
         function setDrawingAreaOfCanvas() {
             const viewportSize = {
@@ -107,22 +107,7 @@
         })();
 
     </script>
-    <!-- <script type="module" src="./index.js"></script> -->
-    <script type="module">
-        import { getEleById, addListener } from './utils.js';
-
-const memeGeneratorForm = getEleById('memeGeneratorForm');
-const memeImageInput = getEleById('memeFile');
-
-function drawImage(imageElement) {
-    drawingAreaContext.drawImage(imageElement, 100, 100, drawingArea.width, drawingArea.height);
-}
-
-addListener(memeImageInput, 'change', (e) => {
-    console.log('e', e);
-    drawImage(memeImageInput);
-})
-    </script>
+    <script type="module" src="./index.js"></script>
 </body>
 
 </html>
