@@ -3,8 +3,39 @@ import { getEleById, addListener } from './utils.js';
 const memeGeneratorForm = getEleById('memeGeneratorForm');
 const memeImageInput = getEleById('memeFile');
 
+const memeInputForm = getEleById('memeTextInputForm');
+const memeTopText = getEleById('toptext');
+const memeBottomText = getEleById('bottomtext');
+
 function drawImage(imageElement) {
-    drawingAreaContext.drawImage(imageElement, 300, 400, drawingArea.width, drawingArea.height);
+    drawingAreaContext.drawImage(imageElement, 300, 100, drawingArea.width, drawingArea.height);
+}
+
+function setFontRelatedStyles(fontStyles) {
+    drawingAreaContext.font = '36px sans-sarif';
+}
+
+function setFillColor(color) {
+    drawingAreaContext.fillStyle = color;
+}
+
+function setStrokeColor(color) {
+    drawingAreaContext.strokeStyle = color;
+}
+
+function drawFillText(value, position, color = 'white') {
+    setFillColor(color);
+    drawingAreaContext.fillText(value, position.x, position.y);
+}
+
+function drawStrokeText(value, position, color = 'black') {
+    setStrokeColor(color);
+    drawingAreaContext.strokeText(value, position.x, position.y);
+}
+
+function drawText(value, position) {
+    drawFillText(value, position);
+    drawStrokeText(value, position);
 }
 
 function handleFileChangeViaFileReaderApi(file) {
@@ -36,9 +67,28 @@ async function handleFileChangeViaCreateImageBitMapApiAsync(file) {
     drawImage(imageBitMap);
 }
 
+
+function createDrawText(position) {
+    return function positionRememberedDrawText(ev) {
+        const inputTarget = ev.target;
+        const inputValue = inputTarget.value;
+        drawText(inputValue, position);
+    }
+}
+
 addListener(memeImageInput, 'change', (e) => {
     console.log('e', e);
     const file = e.target.files[0];
     console.log('file', file);
     handleFileChangeViaCreateImageBitMapApiAsync(file);
 });
+
+addListener(memeTopText, 'input', createDrawText({
+    x: 400,
+    y: 150
+}));
+
+addListener(memeBottomText, 'input', createDrawText({
+    x: 400,
+    y: 600
+}))
