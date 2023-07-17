@@ -67,12 +67,13 @@ async function handleFileChangeViaCreateImageBitMapApiAsync(file) {
     drawImage(imageBitMap);
 }
 
-
 function createDrawText(position) {
+    let previousValue = '';
     return function positionRememberedDrawText(ev) {
         const inputTarget = ev.target;
-        const inputValue = inputTarget.value;
-        drawText(inputValue, position);
+        const currentInputValue = inputTarget.value;
+        previousValue = currentInputValue;
+        drawText(currentInputValue, position);
     }
 }
 
