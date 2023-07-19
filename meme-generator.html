@@ -1,0 +1,68 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas Meme Generator</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="This is canvas based simple meme generator">
+    <meta name="author" content="Joshuva George. M">
+    <meta property="og:title" content="Canvas Meme Generator">
+    <meta property="og:description" content="This is canvas based simple meme generator">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <link rel="icon" type="image/ico" href="meme.ico">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <main class="container">
+        <section id="memeInputSection">
+            <form name="memeGeneratorForm" id="memeGeneratorForm" action="#" method="GET" enctype="multipart/form-data">
+                <div>
+                    <label for="memeFile">Select Meme Image</label>
+                    <input type="file" name="memeFile" id="memeFile" accept="image/*">
+                </div>
+            </form>
+            <hr  style="margin-block-end: 2rem;">
+            <form name="memeTextInputForm" id="memeTextInputForm" action="#" method="post"
+                enctype="application/x-www-form-urlencoded" target="_blank">
+                <div>
+                    <label for="toptext">enter meme top text</label>
+                    <input id="toptext" name="toptext" type="text" placeholder="describe meme">
+                </div>
+                <div>
+                    <label>
+                        Enter meme bottom text
+                        <input id="bottomtext" name="bottomtext" type="text" placeholder="describe meme">
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <canvas id="drawingArea"></canvas>
+
+    </main>
+    <script type="module">
+        import { getEleById } from './utils.js';
+        globalThis.drawingArea = getEleById('drawingArea');
+        globalThis.drawingAreaContext = drawingArea.getContext('2d');
+
+        function setDrawingAreaOfCanvas() {
+            const viewportSize = {
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            };
+            drawingArea.width = viewportSize.width;
+            drawingArea.height = viewportSize.height;
+        }
+
+        setDrawingAreaOfCanvas();
+    </script>
+    
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>

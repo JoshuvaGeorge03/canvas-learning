@@ -5,7 +5,17 @@
 }
 
 canvas {
-    border: 5px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: 3rem solid black;
+}
+
+#memeInputSection {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .container {
