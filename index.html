@@ -19,7 +19,33 @@
 
 <body>
 
-    <canvas id="drawingArea"></canvas>
+    <main class="container">
+        <section id="memeInputSection">
+            <form name="memeGeneratorForm" id="memeGeneratorForm" action="#" method="GET" enctype="multipart/form-data">
+                <div>
+                    <label for="memeFile">Select Meme Image</label>
+                    <input type="file" name="memeFile" id="memeFile" accept="image/*">
+                </div>
+            </form>
+            <hr style="margin-block-end: 2rem;">
+            <form name="memeTextInputForm" id="memeTextInputForm" action="#" method="post"
+                enctype="application/x-www-form-urlencoded" target="_blank">
+                <div>
+                    <label for="toptext">enter meme top text</label>
+                    <input id="toptext" name="toptext" type="text" placeholder="describe meme">
+                </div>
+                <div>
+                    <label>
+                        Enter meme bottom text
+                        <input id="bottomtext" name="bottomtext" type="text" placeholder="describe meme">
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <canvas id="drawingArea"></canvas>
+
+    </main>
 
     <script type="module">
         import { getEleById } from './utils.js';
@@ -101,6 +127,7 @@
         })();
 
     </script>
+    <script type="module" src="./index.js"></script>
 </body>
 
 </html>
