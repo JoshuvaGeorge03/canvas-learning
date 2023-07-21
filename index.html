@@ -18,30 +18,55 @@
 </head>
 
 <body>
-
     <main class="container">
-        <section id="memeInputSection">
-            <form name="memeGeneratorForm" id="memeGeneratorForm" action="#" method="GET" enctype="multipart/form-data">
-                <div>
-                    <label for="memeFile">Select Meme Image</label>
-                    <input type="file" name="memeFile" id="memeFile" accept="image/*">
-                </div>
-            </form>
-            <hr style="margin-block-end: 2rem;">
-            <form name="memeTextInputForm" id="memeTextInputForm" action="#" method="post"
-                enctype="application/x-www-form-urlencoded" target="_blank">
-                <div>
-                    <label for="toptext">enter meme top text</label>
-                    <input id="toptext" name="toptext" type="text" placeholder="describe meme">
-                </div>
-                <div>
-                    <label>
-                        Enter meme bottom text
-                        <input id="bottomtext" name="bottomtext" type="text" placeholder="describe meme">
-                    </label>
-                </div>
+        <section class="canvasControlForm">
+            <form name="canvasControlForm" action="#" method="GET" id="canvasControlForm">
+                <fieldset>
+                    <legend>control canvas form</legend>
+                    <div>
+                        <input type="radio" name="canvasControlState" id="myBasicShapes" value="basicShape" checked>
+                        <label for="myBasicShapes">My Basic Shapes</label>
+                        <input type="radio" name="canvasControlState" id="interactiveShapes" value="interactiveShapes">
+                        <label for="interactiveShapes">interactive shapes drawing</label>
+                        <input type="radio" name="canvasControlState" id="imageDraw" value="imageDraw">
+                        <label for="imageDraw">load image onto canvas</label>
+                        <input type="radio" name="canvasControlState" id="videoDraw" value="videoDraw">
+                        <label for="videoDraw">load video onto canvas</label>
+                        <input type="radio" name="canvasControlState" id="imageFilter" value="imageFilter">
+                        <label for="imageFilter">Image filter</label>
+                        <input type="radio" name="canvasControlState" id="vidoFilter" value="vidoFilter">
+                        <label for="vidoFilter">Video filter</label>
+                        <input type="radio" name="canvasControlState" id="memeGenerator" value="memeGenerator">
+                        <label for="memeGenerator">Generate memes</label>
+                    </div>
+                </fieldset>
             </form>
         </section>
+        <template id="memeGenerationTemplate">
+            <section id="memeInputSection">
+                <form name="memeGeneratorForm" id="memeGeneratorForm" action="#" method="GET"
+                    enctype="multipart/form-data">
+                    <div>
+                        <label for="memeFile">Select Meme Image</label>
+                        <input type="file" name="memeFile" id="memeFile" accept="image/*">
+                    </div>
+                </form>
+                <hr style="margin-block-end: 2rem;">
+                <form name="memeTextInputForm" id="memeTextInputForm" action="#" method="post"
+                    enctype="application/x-www-form-urlencoded" target="_blank">
+                    <div>
+                        <label for="toptext">enter meme top text</label>
+                        <input id="toptext" name="toptext" type="text" placeholder="describe meme">
+                    </div>
+                    <div>
+                        <label>
+                            Enter meme bottom text
+                            <input id="bottomtext" name="bottomtext" type="text" placeholder="describe meme">
+                        </label>
+                    </div>
+                </form>
+            </section>
+        </template>
 
         <canvas id="drawingArea"></canvas>
 
@@ -57,8 +82,8 @@
                 width: document.documentElement.clientWidth,
                 height: document.documentElement.clientHeight
             };
-            drawingArea.width = viewportSize.width;
-            drawingArea.height = viewportSize.height;
+            // drawingArea.width = viewportSize.width;
+            // drawingArea.height = viewportSize.height;
         }
 
         setDrawingAreaOfCanvas();

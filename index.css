@@ -4,20 +4,10 @@
     box-sizing: border-box;
 }
 
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    outline: 3rem solid black;
+body {
+    margin: 1rem;
 }
 
-#memeInputSection {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.container {
-    display: flex;
+.canvasControlForm {
+    margin: 1rem 0;
 }
