@@ -1,0 +1,28 @@
+{
+  "name": "canvas-fun",
+  "version": "0.0.1",
+  "description": "This is the project to learn about canvas",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/JoshuvaGeorge03/canvas-learning.git"
+  },
+  "keywords": [
+    "canvas"
+  ],
+  "author": "Joshuva George. M",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoshuvaGeorge03/canvas-learning/issues"
+  },
+  "homepage": "https://github.com/JoshuvaGeorge03/canvas-learning#readme",
+  "devDependencies": {
+    "htmlhint": "^1.1.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0"
+  }
+}
