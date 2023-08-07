@@ -1,0 +1,12 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "worker": true,
+        "serviceworker": true
+    },
+    "globals": {
+        "test": "writable",
+        "test2":"readonly"
+    }
+}

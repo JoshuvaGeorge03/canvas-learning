@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/JoshuvaGeorge03/canvas-learning#readme",
   "devDependencies": {
+    "eslint": "^8.46.0",
     "htmlhint": "^1.1.4",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
