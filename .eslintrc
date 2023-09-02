@@ -1,12 +1,24 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "worker": true,
-        "serviceworker": true
-    },
-    "globals": {
-        "test": "writable",
-        "test2":"readonly"
-    }
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2022": true,
+		"worker": true,
+		"serviceworker": true
+	},
+	"globals": {
+		"test": "writable",
+		"test2": "readonly"
+	},
+	"parserOptions": {
+		"ecmaVersion": 13,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"impliedStrict": true
+		}
+	},
+	"plugins": [],
+	"extends": ["eslint:recommended", "prettier"],
+	"rules": {},
+	"noInlineConfig": true
 }
