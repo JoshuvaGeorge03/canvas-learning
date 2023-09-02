@@ -7,8 +7,8 @@
 		"serviceworker": true
 	},
 	"globals": {
-		"test": "writable",
-		"test2": "readonly"
+		"drawingArea": "writable",
+		"drawingAreaContext": "readonly"
 	},
 	"parserOptions": {
 		"ecmaVersion": 13,
@@ -19,6 +19,8 @@
 	},
 	"plugins": [],
 	"extends": ["eslint:recommended", "prettier"],
-	"rules": {},
+	"rules": {
+		"no-unused-vars": "off"
+	},
 	"noInlineConfig": true
 }
