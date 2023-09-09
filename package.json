@@ -7,7 +7,7 @@
 		"test": "jest",
 		"prepare": "husky install",
 		"format": "prettier . --check",
-		"lint": "eslint  . --report-unused-disable-directives"
+		"lint": "eslint  . --max-warnings 0 --report-unused-disable-directives"
 	},
 	"repository": {
 		"type": "git",

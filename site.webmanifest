@@ -1,0 +1,26 @@
+{
+    "name": "Canvas Drawer",
+    "short_name": "Drawer",
+    "start_url": "/",
+    "background_color": "#A90",
+    "display": "standalone",
+    "description": "This is the Canvas Drawer App",
+    "icons": [
+        {
+            "src": "assets/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src":"assets/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src":"assets/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#A90"   
+}
