@@ -7,6 +7,7 @@
 		"test": "jest",
 		"prepare": "husky install",
 		"format": "prettier . --check",
+		"format_fix": "prettier . --write",
 		"lint": "eslint  . --max-warnings 0 --report-unused-disable-directives"
 	},
 	"repository": {
