@@ -19,6 +19,9 @@
 		<link rel="icon" type="image/ico" href="meme.ico" />
 		<link rel="stylesheet" type="text/css" href="index.css" />
 		<link rel="manifest" href="../site.webmanifest" />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,100;1,300;1,400;1,500;1,600&family=Oswald:wght@300;400;500&display=swap');
+		</style>
 	</head>
 
 	<body>
@@ -30,56 +33,92 @@
 					method="GET"
 					id="canvasControlForm">
 					<fieldset>
-						<legend>control canvas form</legend>
-						<div>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="myBasicShapes"
-								value="basicShape"
-								checked />
-							<label for="myBasicShapes">My Basic Shapes</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="interactiveShapes"
-								value="interactiveShapes" />
-							<label for="interactiveShapes">interactive shapes drawing</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="imageDraw"
-								value="imageDraw" />
-							<label for="imageDraw">load image onto canvas</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="videoDraw"
-								value="videoDraw" />
-							<label for="videoDraw">load video onto canvas</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="imageFilter"
-								value="imageFilter" />
-							<label for="imageFilter">Image filter</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="vidoFilter"
-								value="vidoFilter" />
-							<label for="vidoFilter">Video filter</label>
-							<input
-								type="radio"
-								name="canvasControlState"
-								id="memeGenerator"
-								value="memeGenerator" />
-							<label for="memeGenerator">Generate memes</label>
+						<legend class="modeSectionContainerTitle">
+							control mode of canvas form
+						</legend>
+						<div class="modeSectionContainer">
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="myBasicShapes"
+									value="basicShape"
+									checked />
+								<label for="myBasicShapes">My Basic Shapes</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="interactiveShapes"
+									value="interactiveShapes" />
+								<label for="interactiveShapes"
+									>Interactive shapes drawing</label
+								>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="imageDraw"
+									value="imageDraw" />
+								<label for="imageDraw">Load image onto canvas</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="videoDraw"
+									value="videoDraw" />
+								<label for="videoDraw">Load video onto canvas</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="imageFilter"
+									value="imageFilter" />
+								<label for="imageFilter">Image filter</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="vidoFilter"
+									value="vidoFilter" />
+								<label for="vidoFilter">Video filter</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="canvasControlState"
+									id="memeGenerator"
+									value="memeGenerator" />
+								<label for="memeGenerator">Generate memes</label>
+							</div>
 						</div>
 					</fieldset>
 				</form>
 			</section>
-			<template id="memeGenerationTemplate">
+			<template id="myBasicShapesTemplate">
+				<p>Please find basic shapes</p>
+			</template>
+			<template id="interactiveShapesTemplate">
+				<p>interactive shapes</p>
+			</template>
+			<template id="imageDrawTemplate">
+				<p>image draw shapes</p>
+			</template>
+			<template id="videoDrawTemplate">
+				<p>video draw shapes</p>
+			</template>
+			<template id="imageFilterTemplate">
+				<p>image filter shapes</p>
+			</template>
+			<template id="vidoFilterTemplate">
+				<p>video filter shapes</p>
+			</template>
+			<template id="memeGeneratorTemplate">
 				<section id="memeInputSection">
 					<form
 						name="memeGeneratorForm"
@@ -125,7 +164,9 @@
 					</form>
 				</section>
 			</template>
-
+			<section
+				id="templateInsertSection"
+				class="flow-content templateInsertSection"></section>
 			<canvas id="drawingArea"></canvas>
 		</main>
 

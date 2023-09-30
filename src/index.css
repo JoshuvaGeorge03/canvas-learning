@@ -1,13 +1,65 @@
+/* Css variables */
+:root {
+	--font-family: 'Dancing Script', 'Arial Narrow', Arial, sans-serif;
+	--font-size: 1.5rem;
+	--clr-primary: rgb(38, 132, 198);
+	--clr-primary-contrast: white;
+	--clr-secondary: rgb(104, 178, 231);
+
+	--spacer: 1rem;
+}
+
+/* resets */
+
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 }
 
-body {
-	margin: 1rem;
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+	padding: 0;
 }
 
-.canvasControlForm {
-	margin: 1rem 0;
+img {
+	display: block;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+/* utility classe */
+
+.flow-content > * + * {
+	margin-top: var(--spacer);
+}
+
+/* general styling */
+
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-display: swap;
+
+	background-color: var(--clr-primary);
+	color: var(--clr-primary-contrast);
+}
+
+canvas {
+	background-color: white;
+}
+
+/* individual sections */
+.modeSectionContainer {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.modeSectionContainerTitle {
+	text-transform: capitalize;
+}
+
+.templateInsertSection {
+	padding: 1rem 0;
 }
