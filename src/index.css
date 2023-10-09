@@ -18,7 +18,8 @@
 h1,
 h2,
 h3,
-p {
+p,
+body {
 	margin: 0;
 	padding: 0;
 }
@@ -35,6 +36,10 @@ img {
 	margin-top: var(--spacer);
 }
 
+.container {
+	padding: 1.125rem;
+}
+
 /* general styling */
 
 body {
@@ -44,6 +49,14 @@ body {
 
 	background-color: var(--clr-primary);
 	color: var(--clr-primary-contrast);
+}
+
+.entire-size {
+	width: 100vw;
+	width: 100dvw;
+	height: 100vh;
+	height: 100dvh;
+	overflow: hidden;
 }
 
 canvas {
@@ -62,4 +75,8 @@ canvas {
 
 .templateInsertSection {
 	padding: 1rem 0;
+}
+
+.canvasDrawingArea {
+	overflow: hidden auto;
 }
