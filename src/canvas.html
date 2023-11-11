@@ -25,7 +25,7 @@
 	</head>
 
 	<body class="entire-size">
-		<main class="container">
+		<main class="container parent-height">
 			<section class="canvasControlForm">
 				<form
 					name="canvasControlForm"
@@ -168,7 +168,7 @@
 				id="templateInsertSection"
 				class="flow-content templateInsertSection"></section>
 			<section id="canvasDrawingArea" class="canvasDrawingArea">
-				<canvas id="drawingArea"></canvas>
+				<canvas style="opacity: 0" id="drawingArea"></canvas>
 			</section>
 		</main>
 
@@ -177,16 +177,16 @@
 			globalThis.drawingArea = getEleById('drawingArea');
 			globalThis.drawingAreaContext = drawingArea.getContext('2d');
 
-			function setDrawingAreaOfCanvas() {
-				const viewportSize = {
-					width: document.documentElement.clientWidth,
-					height: document.documentElement.clientHeight
-				};
-				// drawingArea.width = viewportSize.width;
-				// drawingArea.height = viewportSize.height;
-			}
+			// function setDrawingAreaOfCanvas() {
+			// 	const viewportSize = {
+			// 		width: document.documentElement.clientWidth,
+			// 		height: document.documentElement.clientHeight
+			// 	};
+			// 	// drawingArea.width = viewportSize.width;
+			// 	// drawingArea.height = viewportSize.height;
+			// }
 
-			setDrawingAreaOfCanvas();
+			// setDrawingAreaOfCanvas();
 		</script>
 		<script type="module">
 			import { getEleById, addListener, compose } from './utils.js';

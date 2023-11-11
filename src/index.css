@@ -2,6 +2,7 @@
 :root {
 	--font-family: 'Dancing Script', 'Arial Narrow', Arial, sans-serif;
 	--font-size: 1.5rem;
+
 	--clr-primary: rgb(38, 132, 198);
 	--clr-primary-contrast: white;
 	--clr-secondary: rgb(104, 178, 231);
@@ -37,7 +38,19 @@ img {
 }
 
 .container {
-	padding: 1.125rem;
+	max-width: 60rem;
+	width: 100%;
+	margin: 0 auto;
+	height: 100%;
+}
+
+canvas {
+	background-color: white;
+	display: block;
+}
+
+.parent-height {
+	height: 100%;
 }
 
 /* general styling */
@@ -49,6 +62,8 @@ body {
 
 	background-color: var(--clr-primary);
 	color: var(--clr-primary-contrast);
+
+	overflow-x: hidden;
 }
 
 .entire-size {
@@ -56,11 +71,7 @@ body {
 	width: 100dvw;
 	height: 100vh;
 	height: 100dvh;
-	overflow: hidden;
-}
-
-canvas {
-	background-color: white;
+	/* overflow: hidden; */
 }
 
 /* individual sections */
@@ -75,8 +86,4 @@ canvas {
 
 .templateInsertSection {
 	padding: 1rem 0;
-}
-
-.canvasDrawingArea {
-	overflow: hidden auto;
 }

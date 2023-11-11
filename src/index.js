@@ -1,4 +1,8 @@
-import { addListener, getEleById } from './utils.js';
+import { resetCanvasDrawingSurface } from './canvas-utils.js';
+import { createResizeObserver } from './resize-utils.js';
+import { addListener, getEleById, getEl } from './utils.js';
+
+const mainEl = getEl('main');
 
 const inputElementIds = [
 	'myBasicShapes',
@@ -66,3 +70,16 @@ function getInitiallySelectedSection() {
 }
 
 insertTemplate(getInitiallySelectedSection());
+
+function canvasUnsizedFlashFixHack() {
+	window.drawingArea.style.opacity = 1;
+}
+
+setTimeout(() => {
+	resetCanvasDrawingSurface(window.drawingArea, mainEl);
+	canvasUnsizedFlashFixHack();
+}, 1000);
+
+createResizeObserver((entry) =>
+	resetCanvasDrawingSurface(window.drawingArea, mainEl)
+).observe(mainEl);
