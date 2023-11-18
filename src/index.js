@@ -1,4 +1,4 @@
-import { resetCanvasDrawingSurface } from './canvas-utils.js';
+import { resetAndRestorePreviousCanvasDrawingArea } from './canvas-utils.js';
 import { createResizeObserver } from './resize-utils.js';
 import { addListener, getEleById, getEl } from './utils.js';
 
@@ -76,10 +76,10 @@ function canvasUnsizedFlashFixHack() {
 }
 
 setTimeout(() => {
-	resetCanvasDrawingSurface(window.drawingArea, mainEl);
+	resetAndRestorePreviousCanvasDrawingArea(window.drawingArea, mainEl);
 	canvasUnsizedFlashFixHack();
 }, 1000);
 
 createResizeObserver((entry) =>
-	resetCanvasDrawingSurface(window.drawingArea, mainEl)
+	resetAndRestorePreviousCanvasDrawingArea(window.drawingArea, mainEl)
 ).observe(mainEl);

@@ -22,5 +22,5 @@
 	"rules": {
 		"no-unused-vars": "off"
 	},
-	"noInlineConfig": true
+	"noInlineConfig": false
 }

@@ -1,9 +1,49 @@
+/* eslint-disable no-self-assign */
 import { setHeightOfAnEl, setWidthOfAnEl } from './dom-utils.js';
 
 const canvasElement = window.drawingArea;
+const canvasDrawingContext = window.drawingAreaContext;
 
 const minHeight = 300;
 const minWidth = 500;
+
+class CanvasImageData {
+	constructor() {
+		this.imageData = [];
+		this.canvasEl = canvasElement;
+		this.canvasDrawingContext = canvasDrawingContext;
+	}
+
+	setCanvasProps(canvasEl, canvasDrawingContext) {
+		this.canvasEl = canvasEl;
+		this.canvasDrawingContext = canvasDrawingContext;
+	}
+
+	save() {
+		this.canvasDrawingContext.save();
+		this.imageData.push(
+			this.canvasDrawingContext.getImageData(
+				0,
+				0,
+				this.canvasEl.width,
+				this.canvasEl.height
+			)
+		);
+	}
+
+	reset() {
+		this.canvasEl.width = this.canvasEl.width;
+		this.canvasEl.height = this.canvasEl.height;
+	}
+
+	restore() {
+		const imageData = this.imageData.pop();
+		this.canvasDrawingContext.putImageData(imageData, 0, 0);
+		this.canvasDrawingContext.restore();
+	}
+}
+
+const canvasImageData = new CanvasImageData();
 
 function getViewportHeight() {
 	return document.documentElement.clientHeight;
@@ -62,16 +102,27 @@ function setSizeOfCanvasDrawingArea(canvasEl, rootEl) {
 	setCanvasWidthBasedOnMinWidth(canvasWidth);
 }
 
-function saveCanvasState(canvasEl) {}
-
-function restoreCanvasState(canvasEl) {}
-
-function resetAndRestorePreviousCanvasDrawingArea(canvasEle) {
-	saveCanvasState(canvasEle);
-	resetCanvasDrawingSurface(canvasEle);
-	restoreCanvasState(canvasEle);
+function saveCanvasState(canvasEl) {
+	canvasImageData.save();
 }
 
-export function resetCanvasDrawingSurface(canvasEl, rootEl = document.body) {
+function restoreCanvasState(canvasEl) {
+	canvasImageData.restore();
+}
+
+function resetCanvasState(canvasEl) {
+	canvasImageData.reset();
+}
+
+function resetCanvasDrawingSurface(canvasEl, rootEl = document.body) {
 	setSizeOfCanvasDrawingArea(canvasEl, rootEl);
+}
+
+export function resetAndRestorePreviousCanvasDrawingArea(
+	canvasEle,
+	rootEl = document.body
+) {
+	saveCanvasState(canvasEle);
+	resetCanvasDrawingSurface(canvasEle, rootEl);
+	restoreCanvasState(canvasEle);
 }
