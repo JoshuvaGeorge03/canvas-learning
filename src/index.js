@@ -78,7 +78,7 @@ function insertTemplate(inputElementId) {
 	initFn();
 }
 
-function createIdsToDraw(elementId, func) {
+function setInputElementIdToDrawCall(elementId, func) {
 	inputElementIdsToCanvasInitFunctionMapping[elementId] = func;
 }
 
@@ -92,7 +92,7 @@ function getInitiallySelectedSection() {
 	return localStorage.getItem('initiallySelectedItem') || inputElementIds[0];
 }
 
-createIdsToDraw(basicShapesInputElementId, basicShapesInit);
+setInputElementIdToDrawCall(basicShapesInputElementId, basicShapesInit);
 
 insertTemplate(getInitiallySelectedSection());
 
