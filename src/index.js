@@ -1,11 +1,22 @@
-import { resetAndRestorePreviousCanvasDrawingArea } from './canvas-utils.js';
+import {
+	resetAndRestorePreviousCanvasDrawingArea,
+	resetCanvasState
+} from './canvas-utils.js';
 import { createResizeObserver } from './resize-utils.js';
-import { addListener, getEleById, getEl } from './utils.js';
+import {
+	addListener,
+	getEleById,
+	getEl,
+	doNothingExceptReturnPassedArg
+} from './utils.js';
+import { basicShapesInit } from './basic-shapes.js';
 
 const mainEl = getEl('main');
 
+const basicShapesInputElementId = 'myBasicShapes';
+
 const inputElementIds = [
-	'myBasicShapes',
+	basicShapesInputElementId,
 	'interactiveShapes',
 	'imageDraw',
 	'videoDraw',
@@ -25,6 +36,11 @@ const inputElementIdsToTemplateIdsMapping = inputElementIds.reduce(
 		accu[cur] = templateId;
 		return accu;
 	},
+	{}
+);
+
+const inputElementIdsToCanvasInitFunctionMapping = inputElementIds.reduce(
+	(acc, cur) => (acc[cur] = doNothingExceptReturnPassedArg),
 	{}
 );
 
@@ -53,10 +69,17 @@ function parseTemplate(template) {
 
 function insertTemplate(inputElementId) {
 	const templateId = inputElementIdsToTemplateIdsMapping[inputElementId];
+	const initFn = inputElementIdsToCanvasInitFunctionMapping[inputElementId];
 	const template = templateIdsToElementMapping[templateId];
 	const clonedTemplate = parseTemplate(template);
 	const templateContainer = getTemplateInsertionSection();
 	templateContainer.replaceChildren(clonedTemplate);
+	resetCanvasState();
+	initFn();
+}
+
+function createIdsToDraw(elementId, func) {
+	inputElementIdsToCanvasInitFunctionMapping[elementId] = func;
 }
 
 inputElementIds.forEach((inputElementId) => {
@@ -69,6 +92,8 @@ function getInitiallySelectedSection() {
 	return localStorage.getItem('initiallySelectedItem') || inputElementIds[0];
 }
 
+createIdsToDraw(basicShapesInputElementId, basicShapesInit);
+
 insertTemplate(getInitiallySelectedSection());
 
 function canvasUnsizedFlashFixHack() {
@@ -80,6 +105,6 @@ setTimeout(() => {
 	canvasUnsizedFlashFixHack();
 }, 1000);
 
-createResizeObserver((entry) =>
+createResizeObserver(mainEl, (entry) =>
 	resetAndRestorePreviousCanvasDrawingArea(window.drawingArea, mainEl)
-).observe(mainEl);
+);

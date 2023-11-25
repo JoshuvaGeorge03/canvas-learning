@@ -110,7 +110,7 @@ function restoreCanvasState(canvasEl) {
 	canvasImageData.restore();
 }
 
-function resetCanvasState(canvasEl) {
+export function resetCanvasState(canvasEl) {
 	canvasImageData.reset();
 }
 

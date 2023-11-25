@@ -26,3 +26,5 @@ export function compose(...fns) {
 		}, input);
 	};
 }
+
+export const doNothingExceptReturnPassedArg = (arg) => arg;
