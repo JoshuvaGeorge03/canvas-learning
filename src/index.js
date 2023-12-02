@@ -10,14 +10,16 @@ import {
 	doNothingExceptReturnPassedArg
 } from './utils.js';
 import { basicShapesInit } from './basic-shapes.js';
+import interactiveShapesInit from './interactive-shapes.js';
 
 const mainEl = getEl('main');
 
 const basicShapesInputElementId = 'myBasicShapes';
+const interactiveShapesInputEementId = 'interactiveShapes';
 
 const inputElementIds = [
 	basicShapesInputElementId,
-	'interactiveShapes',
+	interactiveShapesInputEementId,
 	'imageDraw',
 	'videoDraw',
 	'imageFilter',
@@ -75,16 +77,19 @@ function insertTemplate(inputElementId) {
 	const templateContainer = getTemplateInsertionSection();
 	templateContainer.replaceChildren(clonedTemplate);
 	resetCanvasState();
-	initFn();
+	const tearDownFn = initFn();
+	return tearDownFn || doNothingExceptReturnPassedArg;
 }
 
 function setInputElementIdToDrawCall(elementId, func) {
 	inputElementIdsToCanvasInitFunctionMapping[elementId] = func;
 }
 
+let tearDownFn = doNothingExceptReturnPassedArg;
 inputElementIds.forEach((inputElementId) => {
 	addListener(inputElementIdsToElementMapping[inputElementId], 'change', () => {
-		insertTemplate(inputElementId);
+		tearDownFn();
+		tearDownFn = insertTemplate(inputElementId);
 	});
 });
 
@@ -93,8 +98,12 @@ function getInitiallySelectedSection() {
 }
 
 setInputElementIdToDrawCall(basicShapesInputElementId, basicShapesInit);
+setInputElementIdToDrawCall(
+	interactiveShapesInputEementId,
+	interactiveShapesInit
+);
 
-insertTemplate(getInitiallySelectedSection());
+tearDownFn = insertTemplate(getInitiallySelectedSection());
 
 function canvasUnsizedFlashFixHack() {
 	window.drawingArea.style.opacity = 1;

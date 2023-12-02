@@ -104,7 +104,17 @@
 				<p>Please find basic shapes</p>
 			</template>
 			<template id="interactiveShapesTemplate">
-				<p>interactive shapes</p>
+				<form method="get" action="/" target="_self" novalidate>
+					<div>
+						<input
+							name="shape"
+							value="freeflow"
+							id="freeflow"
+							type="radio"
+							checked />
+						<label for="freeflow">Free Flow</label>
+					</div>
+				</form>
 			</template>
 			<template id="imageDrawTemplate">
 				<p>image draw shapes</p>
