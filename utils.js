@@ -28,3 +28,5 @@ export function compose(...fns) {
 }
 
 export const doNothingExceptReturnPassedArg = (arg) => arg;
+
+export const dummyFn = () => void 0;

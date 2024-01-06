@@ -117,7 +117,14 @@
 				</form>
 			</template>
 			<template id="imageDrawTemplate">
-				<p>image draw shapes</p>
+				<form id="imageLoadForm">
+					<label for="imageToLoad">Choose the image to load on canvas</label>
+					<input
+						type="file"
+						accept="image/*"
+						id="imageToLoad"
+						name="imageToLoad" />
+				</form>
 			</template>
 			<template id="videoDrawTemplate">
 				<p>video draw shapes</p>

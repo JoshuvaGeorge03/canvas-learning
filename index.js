@@ -7,20 +7,24 @@ import {
 	addListener,
 	getEleById,
 	getEl,
-	doNothingExceptReturnPassedArg
+	doNothingExceptReturnPassedArg,
+	dummyFn
 } from './utils.js';
 import { basicShapesInit } from './basic-shapes.js';
 import interactiveShapesInit from './interactive-shapes.js';
+import loadImage from './load-image.js';
 
 const mainEl = getEl('main');
 
 const basicShapesInputElementId = 'myBasicShapes';
 const interactiveShapesInputEementId = 'interactiveShapes';
 
+const loadImageIputElementId = 'imageDraw';
+
 const inputElementIds = [
 	basicShapesInputElementId,
 	interactiveShapesInputEementId,
-	'imageDraw',
+	loadImageIputElementId,
 	'videoDraw',
 	'imageFilter',
 	'vidoFilter',
@@ -42,7 +46,7 @@ const inputElementIdsToTemplateIdsMapping = inputElementIds.reduce(
 );
 
 const inputElementIdsToCanvasInitFunctionMapping = inputElementIds.reduce(
-	(acc, cur) => (acc[cur] = doNothingExceptReturnPassedArg),
+	(acc, cur) => (acc[cur] = dummyFn),
 	{}
 );
 
@@ -77,18 +81,18 @@ function insertTemplate(inputElementId) {
 	const templateContainer = getTemplateInsertionSection();
 	templateContainer.replaceChildren(clonedTemplate);
 	resetCanvasState();
-	const tearDownFn = initFn();
-	return tearDownFn || doNothingExceptReturnPassedArg;
+	const tearFn = initFn(drawingArea, drawingAreaContext);
+	return tearFn || dummyFn;
 }
 
 function setInputElementIdToDrawCall(elementId, func) {
 	inputElementIdsToCanvasInitFunctionMapping[elementId] = func;
 }
 
-let tearDownFn = doNothingExceptReturnPassedArg;
+let tearDownFn = dummyFn;
 inputElementIds.forEach((inputElementId) => {
 	addListener(inputElementIdsToElementMapping[inputElementId], 'change', () => {
-		tearDownFn();
+		tearDownFn?.();
 		tearDownFn = insertTemplate(inputElementId);
 	});
 });
@@ -102,6 +106,7 @@ setInputElementIdToDrawCall(
 	interactiveShapesInputEementId,
 	interactiveShapesInit
 );
+setInputElementIdToDrawCall(loadImageIputElementId, loadImage);
 
 tearDownFn = insertTemplate(getInitiallySelectedSection());
 
