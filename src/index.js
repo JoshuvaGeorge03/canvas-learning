@@ -3,29 +3,24 @@ import {
 	resetCanvasState
 } from './canvas-utils.js';
 import { createResizeObserver } from './resize-utils.js';
-import {
-	addListener,
-	getEleById,
-	getEl,
-	doNothingExceptReturnPassedArg,
-	dummyFn
-} from './utils.js';
+import { addListener, getEleById, getEl, dummyFn } from './utils.js';
 import { basicShapesInit } from './basic-shapes.js';
 import interactiveShapesInit from './interactive-shapes.js';
 import loadImage from './load-image.js';
+import videoLoadInit from './videoload/index.js';
 
 const mainEl = getEl('main');
 
 const basicShapesInputElementId = 'myBasicShapes';
 const interactiveShapesInputEementId = 'interactiveShapes';
-
 const loadImageIputElementId = 'imageDraw';
+const loadVideoInputElementId = 'videoDraw';
 
 const inputElementIds = [
 	basicShapesInputElementId,
 	interactiveShapesInputEementId,
 	loadImageIputElementId,
-	'videoDraw',
+	loadVideoInputElementId,
 	'imageFilter',
 	'vidoFilter',
 	'memeGenerator'
@@ -81,7 +76,7 @@ function insertTemplate(inputElementId) {
 	const templateContainer = getTemplateInsertionSection();
 	templateContainer.replaceChildren(clonedTemplate);
 	resetCanvasState();
-	const tearFn = initFn(drawingArea, drawingAreaContext);
+	const tearFn = initFn(globalThis.drawingArea, globalThis.drawingAreaContext);
 	return tearFn || dummyFn;
 }
 
@@ -107,6 +102,7 @@ setInputElementIdToDrawCall(
 	interactiveShapesInit
 );
 setInputElementIdToDrawCall(loadImageIputElementId, loadImage);
+setInputElementIdToDrawCall(loadVideoInputElementId, videoLoadInit);
 
 tearDownFn = insertTemplate(getInitiallySelectedSection());
 
@@ -119,6 +115,6 @@ setTimeout(() => {
 	canvasUnsizedFlashFixHack();
 }, 1000);
 
-createResizeObserver(mainEl, (entry) =>
+const unobserve = createResizeObserver(mainEl, (entry) =>
 	resetAndRestorePreviousCanvasDrawingArea(window.drawingArea, mainEl)
 );

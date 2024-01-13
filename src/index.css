@@ -31,6 +31,12 @@ img {
 	object-fit: cover;
 }
 
+textarea,
+input,
+select {
+	font: inherit;
+}
+
 /* utility classe */
 
 .flow-content > * + * {
@@ -42,11 +48,6 @@ img {
 	width: 100%;
 	margin: 0 auto;
 	height: 100%;
-}
-
-canvas {
-	background-color: white;
-	display: block;
 }
 
 .parent-height {
@@ -64,6 +65,11 @@ body {
 	color: var(--clr-primary-contrast);
 
 	overflow-x: hidden;
+}
+
+canvas {
+	background-color: white;
+	display: block;
 }
 
 .entire-size {

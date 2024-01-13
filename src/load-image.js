@@ -4,11 +4,14 @@ export default function loadImage(canvasEl, canvasContext) {
 	const inputEle = getEleById('imageToLoad');
 	let url = '';
 	function handleFileLoad(e) {
+		if (!e.target.files.length) {
+			return;
+		}
+
 		if (url) {
 			URL.revokeObjectURL(url);
 			url = '';
 		}
-		console.log('e', e.target.files);
 		url = URL.createObjectURL(e.target.files[0]);
 		const img = new Image();
 		img.src = url;
